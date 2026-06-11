@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { AppContext } from '../../context/AppContext';
-import styles from './Login.module.css'; 
+import styles from './Login.module.css';
 import api from '../../services/api'
 
 const schemaLogin = yup.object({
@@ -19,7 +19,7 @@ const schemaLogin = yup.object({
 }).required();
 
 export default function Login() {
-  const { setUsuarioLogado } = useContext(AppContext);
+  const { setUsuarioLogado, setNomeUsuario } = useContext(AppContext);
   const navigate = useNavigate();
   const [erroGeral, setErroGeral] = useState("");
 
@@ -34,9 +34,16 @@ export default function Login() {
       const response = await api.post("/auth/login", dadosFormulario);
 
       if (response.status === 200) {
-        alert("Login realizado com sucesso!");
+        const nomeExtraido = dadosFormulario.email
+          .split("@")[0]
+          .replace(/^\w/, (c) => c.toUpperCase());
+
+        setNomeUsuario(nomeExtraido);
+        localStorage.setItem("nomeUsuario", nomeExtraido);
+
         setUsuarioLogado(true);
         localStorage.setItem("logado", "true");
+        alert("Login realizado com sucesso!");
         navigate("/home");
       }
     } catch (error) {
@@ -55,12 +62,12 @@ export default function Login() {
       <p className={styles.subtitulo}>Faça o login para acessar o sistema</p>
 
       <form onSubmit={handleSubmit(efetuarLogin)} className={styles.formulario}>
-        
+
         <div className={styles.campoGrupo}>
           <label>E-mail:</label>
-          <input 
-            type="text" 
-            placeholder="exemplo@gmail.com" 
+          <input
+            type="text"
+            placeholder="exemplo@gmail.com"
             {...register("email")}
           />
           {errors.email && <span className={styles.mensagemErro}>{errors.email.message}</span>}
@@ -68,9 +75,9 @@ export default function Login() {
 
         <div className={styles.campoGrupo}>
           <label>Senha:</label>
-          <input 
-            type="password" 
-            placeholder="******" 
+          <input
+            type="password"
+            placeholder="******"
             {...register("senha")}
           />
           {errors.senha && <span className={styles.mensagemErro}>{errors.senha.message}</span>}
