@@ -1,0 +1,75 @@
+.tabelaContainer {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background-color: #fff;
+  color: #333;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tabela th {
+  background-color: #34495e;
+  color: white;
+  padding: 12px;
+  font-weight: 600;
+}
+
+.tabela td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.tabela tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+.acoesContainer {
+  display: flex;
+  gap: 8px;
+}
+
+
+.btnTabela {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  transition: opacity 0.2s;
+}
+
+.btnTabela:hover {
+  opacity: 0.85;
+}
+
+
+.btnEditar {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btnExcluir {
+  background-color: #e74c3c;
+  color: white;
+}
+
+:global(.modo-escuro) .tabela {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+:global(.modo-escuro) .tabela tbody tr:nth-child(even) td {
+  background-color: #252525; 
+  color: #f5f5f5;
+  border-bottom: 1px solid #333;
+}
