@@ -1,0 +1,98 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.descricao {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.gridDisciplinas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* Estilo base dos cards */
+.cardDisciplina {
+  background: #fff;
+  border-radius: 14px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efeito de hover com sombra neon */
+.cardDisciplina:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 18px rgba(0, 150, 255, 0.8);
+}
+
+/* Ícone grande */
+.iconoContainer {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.tituloDisciplina {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.descricaoDisciplina {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.rodapeDisciplina {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Estilização individual por disciplina */
+.cardDisciplina:nth-child(1) {
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+.cardDisciplina:nth-child(2) {
+  background: linear-gradient(135deg, #fff3e0, #ffffff);
+}
+.cardDisciplina:nth-child(3) {
+  background: linear-gradient(135deg, #e8f5e9, #ffffff);
+}
+.cardDisciplina:nth-child(4) {
+  background: linear-gradient(135deg, #f3e5f5, #ffffff);
+}
+.cardDisciplina:nth-child(5) {
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+}
+.cardDisciplina:nth-child(6) {
+  background: linear-gradient(135deg, #fbe9e7, #ffffff);
+}
+
+/* Ajuste de cor nos títulos para cada card */
+.cardDisciplina:nth-child(1) .tituloDisciplina { color: #00796b; }
+.cardDisciplina:nth-child(2) .tituloDisciplina { color: #ef6c00; }
+.cardDisciplina:nth-child(3) .tituloDisciplina { color: #2e7d32; }
+.cardDisciplina:nth-child(4) .tituloDisciplina { color: #6a1b9a; }
+.cardDisciplina:nth-child(5) .tituloDisciplina { color: #1565c0; }
+.cardDisciplina:nth-child(6) .tituloDisciplina { color: #d84315; }

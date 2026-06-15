@@ -42,29 +42,23 @@ export default function ListarAlunos() {
   });
 
   return (
-    <div>
-      <h2>Lista de Alunos Cadastrados</h2>
+    <div className={styles.alunosWrapper}>
+      <h2 className={styles.alunosTitle}>Lista de Alunos Cadastrados</h2>
 
-      <div style={{ marginBottom: '15px' }}>
+      <div className={styles.searchContainer}>
         <input
           type="text"
           placeholder="Filtrar por nome ou matrícula"
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
-          style={{
-            padding: '8px 12px',
-            width: '100%',
-            maxWidth: '400px',
-            borderRadius: '4px',
-            border: '1px solid #ccc'
-          }}
+          className={styles.searchInput}
         />
       </div>
 
       {listaAlunos.length === 0 ? (
-        <p>Nenhum aluno cadastrado até o momento.</p>
+        <p className={styles.mensagemVazia}>Nenhum aluno cadastrado até o momento.</p>
       ) : alunosFiltrados.length === 0 ? (
-        <p>Nenhum aluno ou matrícula corresponde à busca.</p>
+        <p className={styles.mensagemVazia}>Nenhum aluno ou matrícula corresponde à busca.</p>
       ) : (
         <div className={styles.tabelaContainer}>
           <table className={styles.tabela}>
