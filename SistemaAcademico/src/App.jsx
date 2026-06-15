@@ -11,7 +11,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header nomeUsuario={nomeUsuario} />
-      <main style={{ padding: "20px", minHeight: "70vh" }}>
+      <main style={{ 
+        padding: "24px", 
+        minHeight: "70vh",
+        animation: "fadeIn 0.6s ease"
+      }}>
         <AppRouter />
       </main>
       <Footer />
