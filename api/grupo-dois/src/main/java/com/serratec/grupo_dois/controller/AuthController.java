@@ -7,11 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.serratec.grupo_dois.model.Usuario;
 import com.serratec.grupo_dois.repository.UsuarioRepository;
-import com.serratec.grupo_dois.security.JwtUtils; // Importe o seu JwtUtils
+import com.serratec.grupo_dois.security.JwtUtils;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:5173") // Permite requisições do React
+@CrossOrigin(origins = "http://localhost:5173") 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -20,22 +22,23 @@ public class AuthController {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    private JwtUtils jwtUtils; // Injeção do utilitário JWT
+    private JwtUtils jwtUtils; 
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Usuario dadosLogin) {
+    public ResponseEntity<?> login(@RequestBody Usuario dadosLogin) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(dadosLogin.getEmail());
 
         if (usuarioOpt.isPresent()) {
             Usuario usuario = usuarioOpt.get();
-            // Verifica a senha (cuidado: em produção, use BCryptPasswordEncoder!)
             if (usuario.getSenha().equals(dadosLogin.getSenha())) {
                 
-                // GERA O TOKEN AQUI
-                String token = jwtUtils.gerarToken(usuario.getEmail());
+            	String token = jwtUtils.gerarToken(usuario.getEmail());
                 
-                // Retorna o token para o React
-                return ResponseEntity.ok(token); 
+                Map<String, String> resposta = new HashMap<>();
+                resposta.put("token", token);
+                resposta.put("username", usuario.getEmail());
+                
+                return ResponseEntity.ok(resposta);
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("E-mail ou senha incorretos.");

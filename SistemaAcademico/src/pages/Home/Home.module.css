@@ -27,6 +27,12 @@
   flex-wrap: wrap;
 }
 
+.cardLink {
+  text-decoration: none; 
+  color: inherit;      
+  display: block;        
+}
+
 .card {
   background: #fff;
   border-radius: 12px;
@@ -35,11 +41,14 @@
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;     
+  box-sizing: border-box; 
 }
 
-.card:hover {
+.cardLink:hover .card {
   transform: translateY(-8px);
   box-shadow: 0 0 15px rgba(0, 150, 255, 0.8);
+  cursor: pointer;      
 }
 
 .cardTitulo {

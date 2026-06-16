@@ -37,8 +37,6 @@ const AuthProvider = ({ children }) => {
     );
 };
 
-// Export the provider as the default export to keep this file exporting only a component
 export default AuthProvider;
 
-// Also attach the context to the provider so other modules can access it without a separate named export
 AuthProvider.Context = AuthContext;

@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private JwtUtils jwtUtils;
+    
+    private final JwtUtils jwtUtils;
 
     public JwtAuthenticationFilter(JwtUtils jwtUtils) {
         this.jwtUtils = jwtUtils;
@@ -21,15 +22,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            filterChain.doFilter(request, response);
+            return;
+        }
+        
         String header = request.getHeader("Authorization");
+        
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
+            
             if (jwtUtils.validarToken(token)) {
                 String username = jwtUtils.getUsernameDoToken(token);
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+                
+                UsernamePasswordAuthenticationToken auth = 
+                    new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+                    
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }
+        
         filterChain.doFilter(request, response);
     }
 }
