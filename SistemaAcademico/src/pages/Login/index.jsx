@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { AppContext } from '../../context/AppContext';
 import styles from './Login.module.css';
-import api from '../../services/api'
+import api from '../../services/api';
 
 const schemaLogin = yup.object({
   email: yup
@@ -34,6 +34,9 @@ export default function Login() {
       const response = await api.post("/auth/login", dadosFormulario);
 
       if (response.status === 200) {
+        const tokenRecebido = response.data.token;
+        localStorage.setItem("token", tokenRecebido);
+
         const nomeExtraido = dadosFormulario.email
           .split("@")[0]
           .replace(/^\w/, (c) => c.toUpperCase());
@@ -43,6 +46,7 @@ export default function Login() {
 
         setUsuarioLogado(true);
         localStorage.setItem("logado", "true");
+        
         alert("Login realizado com sucesso!");
         navigate("/home");
       }

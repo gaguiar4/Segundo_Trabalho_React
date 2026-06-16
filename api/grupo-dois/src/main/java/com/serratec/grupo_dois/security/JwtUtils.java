@@ -9,12 +9,14 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
-    private String secretKey = "sua_chave_secreta";
+    
+    private String secretKey = "essa_e_uma_chave_secreta_super_longa_e_segura_com_mais_de_256_bits_para_o_trabalho";
+
     public String gerarToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // 24 horas
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
                 .signWith(Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)), SignatureAlgorithm.HS512)
                 .compact();
     }

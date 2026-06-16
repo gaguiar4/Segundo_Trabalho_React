@@ -21,11 +21,12 @@ export function AppProvider({ children }) {
     localStorage.setItem("tema", novoTema);
   };
 
-  const logout = () => {
+const logout = () => {
     setUsuarioLogado(false);
     setNomeUsuario("");
     localStorage.removeItem("logado");
     localStorage.removeItem("nomeUsuario");
+    localStorage.removeItem("token"); 
   };
   
   return (

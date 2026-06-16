@@ -26,7 +26,6 @@
   gap: 25px;
 }
 
-/* Estilo base dos cards */
 .cardDisciplina {
   background: #fff;
   border-radius: 14px;
@@ -38,13 +37,11 @@
   overflow: hidden;
 }
 
-/* Efeito de hover com sombra neon */
 .cardDisciplina:hover {
   transform: translateY(-8px);
   box-shadow: 0 0 18px rgba(0, 150, 255, 0.8);
 }
 
-/* Ícone grande */
 .iconoContainer {
   font-size: 3rem;
   margin-bottom: 15px;
@@ -69,7 +66,6 @@
   font-weight: 500;
 }
 
-/* Estilização individual por disciplina */
 .cardDisciplina:nth-child(1) {
   background: linear-gradient(135deg, #e0f7fa, #ffffff);
 }
@@ -89,7 +85,6 @@
   background: linear-gradient(135deg, #fbe9e7, #ffffff);
 }
 
-/* Ajuste de cor nos títulos para cada card */
 .cardDisciplina:nth-child(1) .tituloDisciplina { color: #00796b; }
 .cardDisciplina:nth-child(2) .tituloDisciplina { color: #ef6c00; }
 .cardDisciplina:nth-child(3) .tituloDisciplina { color: #2e7d32; }
